@@ -1,0 +1,58 @@
+
+<div class="row m-3">
+  <div class="col-md-2">
+     <button mat-raised-button color="primary" (click)="sendRequest('Partner A')">Send request by Partner A</button>
+  </div>
+   <div class="col-md-2">
+    <button mat-raised-button color="primary" (click)="sendRequest('Partner B')">Send request by Partner B</button>
+  </div>
+   <div class="col-md-8">
+    <h4>Total number of request consumed by Parter A and Partner B : {{dataSource?.data?.length ? dataSource?.data?.length : 0}}</h4>
+  </div>
+  
+</div>
+<!-- <div class="totalCount">
+  <h3>Total number of request consumed by Parter A and Partner B : {{dataSource?.paginator?._length}}</h3>
+</div> -->
+<div class="mat-elevation-z8">
+    <mat-form-field class="px-2">
+  <mat-label>Filter by partner or date</mat-label>
+  <input matInput (keyup)="applyFilter($event)" autocomplete="false" placeholder="Example - 2020-07-21 or Parter A" #input>
+</mat-form-field> 
+  <table mat-table [dataSource]="dataSource" matSort >
+
+ 
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="requestedBy">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Partner name </th>
+      <td mat-cell *matCellDef="let element"> {{element?.requestedBy}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="origin">
+      <th mat-header-cell *matHeaderCellDef> Origin </th>
+      <td mat-cell *matCellDef="let element"> {{element?.origin}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="requestedAt">
+      <th mat-header-cell *matHeaderCellDef> Time </th>
+      <td mat-cell *matCellDef="let element"> {{element?.requestedAt | date:'short'}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="requestType">
+      <th mat-header-cell *matHeaderCellDef> Request type </th>
+      <td mat-cell *matCellDef="let element"> {{element?.requestType}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <div *ngIf="!dataSource?.data?.length" class="m-5 text-center">
+    <h5>Please Send a request to see data</h5>
+  </div>
+
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
