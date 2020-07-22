@@ -25,7 +25,7 @@ app.get('/api/v1/global/:partnerName',(req, res, next) =>{
 	if(!partner){
 		res.status(400).json({
 			status: 'failed',
-			message: `Please provide partner name`,
+			message: ` Please provide partner name`,
 			data: {}
 		})
 
