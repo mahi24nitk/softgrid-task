@@ -30,7 +30,7 @@ export class NdashboardComponent {
 	//send get request
 	sendRequest(partnerName){
 
-		this.http.get(`http://localhost:3000/api/v1/global/${partnerName}`)
+		this.http.get(`http://try2-env.eba-7r2b8rfi.ap-south-1.elasticbeanstalk.com/api/v1/global/${partnerName}`)
 		.subscribe( data =>{
 			this.dataSource = new MatTableDataSource(data['data']);
 			this.dataSource.paginator = this.paginator;
@@ -43,7 +43,7 @@ export class NdashboardComponent {
 
 	getAllRequest(){
 
-		this.http.get(`http://localhost:3000/api/v1/global/`)
+		this.http.get(`http://try2-env.eba-7r2b8rfi.ap-south-1.elasticbeanstalk.com/api/v1/global/`)
 		.subscribe( data =>{
 			this.dataSource = new MatTableDataSource(data['data']);
 			this.dataSource.paginator = this.paginator;
